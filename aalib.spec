@@ -4,7 +4,7 @@
 
 %define	fname	%{name}-1.4rc5
 %define libname	%mklibname aa %major
-%define release	%mkrel 0.rc5.16
+%define release	%mkrel 0.rc5.17
 
 Summary:	AA (Ascii Art) library
 Name: 		%{name}

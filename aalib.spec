@@ -4,13 +4,15 @@
 
 %define	fname	%{name}-1.4rc5
 %define libname	%mklibname aa %major
+%define develname %mklibname -d aa
+%define staticname %mklibname -s -d aa
 %define release	%mkrel 0.rc5.17
 
 Summary:	AA (Ascii Art) library
 Name: 		%{name}
 Version: 	%{version}
 Release: 	%{release}
-License: 	LGPL
+License: 	LGPLv2+
 Group: 		System/Libraries
 BuildRequires:	XFree86-devel
 BuildRequires:  ncurses-devel
@@ -50,15 +52,16 @@ Win95 does:) AA-lib API is designed to be similar to other graphics
 libraries. Learning a new API would be a piece of cake!
 The AA library is needed for GIMP
 
-%package -n	%{libname}-devel
+%package -n	%develname
 Summary:	Header files and libraries for developing apps which will use %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	libaa-devel = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 Obsoletes:	%{name}-devel
+Obsoletes:	%mklibname -d aa 1
 
-%description -n	%{libname}-devel
+%description -n	%develname
 AA-lib is a low level gfx library just as many other libraries are.
 The main difference is that AA-lib does not require graphics device. In
 fact, there is no graphical output possible. AA-lib replaces those
@@ -68,17 +71,18 @@ Win95 does:) AA-lib API is designed to be similar to other graphics
 libraries. Learning a new API would be a piece of cake!
 The AA library is needed for GIMP
 
-Install the %{libname}-devel package if you want to develop applications that
+Install this package if you want to develop applications that
 will use the %{name} library.
 
-%package -n	%{libname}-static-devel
+%package -n	%staticname
 Summary:	Static library for developing apps which will use %{name}
 Group:		Development/C
-Requires:	%{libname}-devel = %{version}
+Requires:	%develname = %{version}
 Provides:	libaa-static-devel = %{version}-%{release}
 Provides:	%{name}-static-devel = %{version}-%{release}
+Obsoletes:	%mklibname -d -s aa 1
 
-%description -n	%{libname}-static-devel
+%description -n	%staticname
 Static library for %{name}
 
 %package	progs
@@ -114,20 +118,20 @@ rm -rf %buildroot
 
 %post -n %{libname} -p /sbin/ldconfig
 
-%post -n %{libname}-devel
+%post -n %develname
 %_install_info %{name}.info 
 
 %postun -n %{libname} -p /sbin/ldconfig
 
-%preun -n %{libname}-devel
+%preun -n %develname
 %_remove_install_info %{name}.info 
 
 %files -n %{libname}
 %defattr(-,root,root)
 %doc NEWS README
-%{_libdir}/*.so.*
+%{_libdir}/libaa.so.%{major}*
 
-%files -n %{libname}-devel
+%files -n %develname
 %defattr(-,root,root)
 %doc README ChangeLog
 %attr(755,root,root) %{_bindir}/aalib-config
@@ -139,7 +143,7 @@ rm -rf %buildroot
 %{_datadir}/aclocal/*
 %{_mandir}/man3/*
 
-%files -n %{libname}-static-devel
+%files -n %staticname
 %defattr(-,root,root)
 %doc README
 %{_libdir}/*.a

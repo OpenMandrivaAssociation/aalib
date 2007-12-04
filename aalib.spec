@@ -14,7 +14,7 @@ Version: 	%{version}
 Release: 	%{release}
 License: 	LGPLv2+
 Group: 		System/Libraries
-BuildRequires:	XFree86-devel
+BuildRequires:	X11-devel
 BuildRequires:  ncurses-devel
 BuildRequires:	slang-devel
 BuildRequires:	texinfo

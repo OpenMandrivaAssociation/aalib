@@ -23,7 +23,6 @@ Source0: 	http://prdownloads.sourceforge.net/aa-project/%{fname}.tar.bz2
 Patch0:         %{name}-info.patch
 Patch1:		aalib-rpath.patch
 Patch2:		aalib-1.4-automake18.patch
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Url: 		http://aa-project.sourceforge.net/aalib/
 
 %description

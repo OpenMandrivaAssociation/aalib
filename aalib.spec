@@ -116,12 +116,16 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf %buildroot
 
+%if %mdkversion < 200900
 %post -n %{libname} -p /sbin/ldconfig
+%endif
 
 %post -n %develname
 %_install_info %{name}.info 
 
+%if %mdkversion < 200900
 %postun -n %{libname} -p /sbin/ldconfig
+%endif
 
 %preun -n %develname
 %_remove_install_info %{name}.info 

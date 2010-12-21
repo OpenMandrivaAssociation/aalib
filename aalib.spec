@@ -14,11 +14,10 @@ Version: 	%{version}
 Release: 	%{release}
 License: 	LGPLv2+
 Group: 		System/Libraries
-BuildRequires:	X11-devel
-BuildRequires:  ncurses-devel
+BuildRequires:	libx11-devel
+BuildRequires:  gpm-devel
 BuildRequires:	slang-devel
 BuildRequires:	texinfo
-BuildRequires:	automake1.7
 Source0: 	http://prdownloads.sourceforge.net/aa-project/%{fname}.tar.bz2
 Patch0:         %{name}-info.patch
 Patch1:		aalib-rpath.patch
@@ -99,10 +98,8 @@ AA-lib tools.
 %patch1 -p0 -b .rpath
 %patch2 -p1 -b .automake18
 
-%__libtoolize --copy --force
-ACLOCAL=aclocal-1.7 AUTOMAKE=automake-1.7 FORCE_AUTOCONF_2_5=1 autoreconf --force --install
-
 %build
+autoreconf -fi
 %configure2_5x
 %make
 

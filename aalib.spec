@@ -107,9 +107,6 @@ autoreconf -fi
 rm -rf $RPM_BUILD_ROOT
 %makeinstall_std
 
-#multiarch
-%multiarch_binaries $RPM_BUILD_ROOT%{_bindir}/aalib-config
-
 %clean
 rm -rf %buildroot
 
@@ -136,7 +133,6 @@ rm -rf %buildroot
 %defattr(-,root,root)
 %doc README ChangeLog
 %attr(755,root,root) %{_bindir}/aalib-config
-%multiarch %{multiarch_bindir}/aalib-config
 %{_libdir}/*.so
 %{_libdir}/*.la
 %{_infodir}/*.*

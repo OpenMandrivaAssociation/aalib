@@ -6,7 +6,7 @@
 %define libname	%mklibname aa %major
 %define develname %mklibname -d aa
 %define staticname %mklibname -s -d aa
-%define release	%mkrel 0.rc5.22
+%define release	%mkrel 0.rc5.23
 
 Summary:	AA (Ascii Art) library
 Name: 		%{name}

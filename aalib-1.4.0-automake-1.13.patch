@@ -1,0 +1,11 @@
+--- aalib-1.4.0/configure.in.bero	2013-01-15 18:33:22.934275847 +0100
++++ aalib-1.4.0/configure.in	2013-01-15 18:33:28.978203321 +0100
+@@ -4,7 +4,7 @@ AM_INIT_AUTOMAKE(aalib,1.4.0)
+ AC_CANONICAL_HOST
+ AC_CANONICAL_TARGET
+ 
+-AM_CONFIG_HEADER(src/config.h)
++AC_CONFIG_HEADERS([src/config.h])
+ 
+ dnl Initialize the compiler and linker flags for AALIB applications
+ 

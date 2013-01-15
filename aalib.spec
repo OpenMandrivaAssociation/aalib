@@ -8,7 +8,7 @@
 Summary:	AA (Ascii Art) library
 Name:		aalib
 Version:	1.4.0
-Release:	0.rc5.25
+Release:	0.rc5.26
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://aa-project.sourceforge.net/aalib/
@@ -16,6 +16,7 @@ Source0:	http://prdownloads.sourceforge.net/aa-project/%{fname}.tar.bz2
 Patch0:		%{name}-info.patch
 Patch1:		aalib-rpath.patch
 Patch2:		aalib-1.4-automake18.patch
+Patch3:		aalib-1.4.0-automake-1.13.patch
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	gpm-devel
 BuildRequires:	pkgconfig(slang)
@@ -90,6 +91,7 @@ AA-lib tools.
 %patch0 -p1 -b .info
 %patch1 -p0 -b .rpath
 %patch2 -p1 -b .automake18
+%patch3 -p1 -b .automake113~
 
 %build
 autoreconf -fi

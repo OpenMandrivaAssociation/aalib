@@ -72,7 +72,9 @@ AA-lib tools.
 
 %build
 autoreconf -fi
-%configure2_5x
+%configure2_5x \
+	--disable-static
+
 %make
 
 %install

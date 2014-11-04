@@ -99,6 +99,7 @@ AA-lib tools.
 %apply_patches
 
 %build
+export CC=gcc
 autoreconf -fi
 %configure2_5x \
 	--disable-static

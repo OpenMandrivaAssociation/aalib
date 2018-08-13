@@ -7,7 +7,7 @@
 Summary:	AA (Ascii Art) library
 Name:		aalib
 Version:	1.4.0
-Release:	0.rc5.29
+Release:	0.rc5.30
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://aa-project.sourceforge.net/aalib/
@@ -58,6 +58,8 @@ The AA library is needed for GIMP
 Summary:	Header files and libraries for developing apps which will use %{name}
 Group:		Development/C
 Requires:	%{libname} = %{EVRD}
+Requires:	slang-devel
+Requires:	gpm-devel
 Provides:	libaa-devel = %{EVRD}
 Provides:	%{name}-devel = %{EVRD}
 Obsoletes:	%{_lib}aa-static-devel < 1.4.0-0.rc5.27

@@ -7,7 +7,7 @@
 Summary:	AA (Ascii Art) library
 Name:		aalib
 Version:	1.4.0
-Release:	0.rc5.30
+Release:	0.rc5.31
 License:	LGPLv2+
 Group:		System/Libraries
 Url:		http://aa-project.sourceforge.net/aalib/
@@ -103,11 +103,10 @@ AA-lib tools.
 %build
 export CC=gcc
 autoreconf -fi
-%configure2_5x \
+%configure \
 	--disable-static
 
-%make
+%make_build
 
 %install
-%makeinstall_std
-
+%make_install

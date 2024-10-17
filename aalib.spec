@@ -10,7 +10,7 @@ Version:	1.4.0
 Release:	0.rc5.31
 License:	LGPLv2+
 Group:		System/Libraries
-Url:		http://aa-project.sourceforge.net/aalib/
+Url:		https://aa-project.sourceforge.net/aalib/
 Source0:	http://prdownloads.sourceforge.net/aa-project/%{fname}.tar.bz2
 Patch0:		aalib-info.patch
 Patch1:		aalib-rpath.patch

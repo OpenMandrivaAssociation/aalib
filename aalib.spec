@@ -17,6 +17,11 @@ Patch1:		aalib-rpath.patch
 Patch2:		aalib-1.4-automake18.patch
 Patch3:		aalib-1.4.0-automake-1.13.patch
 Patch4:		aalib-1.4.0-texinfo-5.x.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	texinfo
 BuildRequires:	gpm-devel
 BuildRequires:	pkgconfig(slang)

@@ -4,6 +4,10 @@
 %define libname %mklibname aa %{major}
 %define devname %mklibname aa -d
 
+# add workaround for new Clang failures
+%global optflags %{optflags} -Wno-error -Wno-implicit-function-declaration
+%global optflags %{optflags} -std=gnu17
+
 Summary:	AA (Ascii Art) library
 Name:		aalib
 Version:	1.4.0
@@ -17,15 +21,26 @@ Patch1:		aalib-rpath.patch
 Patch2:		aalib-1.4-automake18.patch
 Patch3:		aalib-1.4.0-automake-1.13.patch
 Patch4:		aalib-1.4.0-texinfo-5.x.patch
+
+Patch5:         aalib-1.4rc5-bug149361.patch
+Patch6:         aalib-c99.patch
+Patch7:         https://gitweb.gentoo.org/repo/gentoo.git/plain/media-libs/aalib/files/aalib-1.4_rc5-free-offset-pointer.patch
+	
+Patch8:         https://gitweb.gentoo.org/repo/gentoo.git/plain/media-libs/aalib/files/aalib-1.4_rc5-fix-aarender.patch
+# Modern ncurses has an opaque WINDOW structure (you cannot address its members directly)
+# Use the getmaxx() and getmaxy() functions provided by ncurses instead.
+Patch9:		aalib-1.4rc5-opaque-ncurses-fix.patch
+
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	libtool-base
-BuildRequires:	slibtool
+BuildRequires:	libtool
 BuildRequires:	make
 BuildRequires:	texinfo
 BuildRequires:	gpm-devel
 BuildRequires:	pkgconfig(slang)
 BuildRequires:	pkgconfig(x11)
+BuildRequires:	pkgconfig(ncurses)
 
 %description
 AA-lib is a low level gfx library just as many other libraries are.
@@ -102,16 +117,26 @@ AA-lib tools.
 #----------------------------------------------------------------------------
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 export CC=gcc
+ln -sf %{_bindir}/libtoolize slibtoolize
+export PATH=$PWD:$PATH
+export LIBTOOLIZE=%{_bindir}/libtoolize
+export LIBTOOL=%{_bindir}/libtool
 autoreconf -fi
+ln -sf %{_bindir}/libtoolize slibtoolize
+export PATH=$PWD:$PATH
+export LIBTOOLIZE=%{_bindir}/libtoolize
+export LIBTOOL=%{_bindir}/libtool
 %configure \
-	--disable-static
+	--disable-static \
+	--with-curses-driver=yes \
+	--with-ncurses
 
 %make_build
 
 %install
 %make_install
+
